@@ -1,0 +1,49 @@
+model:
+  type: lstm_autoencoder
+  input_dim: 12               # number of sensor channels (joints × signals)
+  hidden_dim: 64
+  num_layers: 2
+  latent_dim: 16
+  dropout: 0.2
+  bidirectional: false
+
+training:
+  epochs: 100
+  batch_size: 64
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-5
+  lr_scheduler: step
+  lr_step_size: 30
+  lr_gamma: 0.5
+  reconstruction_loss: mse    # mse | mae
+
+data:
+  root: datasets/raw/robot_sensors
+  sequence_length: 50         # time steps per window
+  stride: 10                  # sliding window stride
+  train_on_nominal_only: true # autoencoder trained only on healthy data
+  sensor_channels:
+    - joint_1_torque
+    - joint_2_torque
+    - joint_3_torque
+    - joint_4_torque
+    - joint_5_torque
+    - joint_6_torque
+    - joint_1_velocity
+    - joint_2_velocity
+    - joint_3_velocity
+    - joint_4_velocity
+    - joint_5_velocity
+    - joint_6_velocity
+  normalize: true
+  train_split: 0.8
+
+anomaly_detection:
+  threshold_method: percentile  # percentile | sigma | fixed
+  threshold_percentile: 95      # used when method = percentile
+  threshold_sigma: 3.0          # used when method = sigma
+
+logging:
+  log_dir: logs/robot_anomaly
+  checkpoint_dir: checkpoints/robot_anomaly
+  save_best_only: true

@@ -1,0 +1,43 @@
+# Core deep learning
+torch>=2.1.0
+torchvision>=0.16.0
+timm>=0.9.0
+
+# Machine learning & evaluation
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Reinforcement learning
+stable-baselines3>=2.2.0
+gymnasium>=0.29.0
+
+# Data & numerical computing
+numpy>=1.24.0
+pandas>=2.0.0
+h5py>=3.9.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.17.0
+
+# Computer vision
+opencv-python>=4.8.0
+Pillow>=10.0.0
+albumentations>=1.3.0
+
+# Utilities
+pyyaml>=6.0
+tqdm>=4.65.0
+click>=8.1.0
+rich>=13.0.0
+python-dotenv>=1.0.0
+
+# Notebooks
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+nbformat>=5.9.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0

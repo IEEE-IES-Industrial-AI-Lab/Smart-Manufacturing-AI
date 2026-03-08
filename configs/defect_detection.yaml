@@ -1,0 +1,41 @@
+model:
+  backbone: resnet50          # resnet50 | efficientnet_b4 | vit_b_16
+  pretrained: true
+  num_classes: 2              # 2 for binary; set to category count for multi-class
+  dropout: 0.3
+  freeze_backbone_epochs: 3   # epochs to keep backbone frozen before full fine-tuning
+
+training:
+  epochs: 50
+  batch_size: 32
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-5
+  lr_scheduler: cosine        # cosine | step | plateau
+  warmup_epochs: 5
+  early_stopping_patience: 10
+  mixed_precision: true
+
+data:
+  dataset: mvtec              # mvtec | neu_surface
+  root: datasets/raw/mvtec_ad
+  category: bottle            # MVTec category (bottle, cable, capsule, …)
+  image_size: 224
+  train_split: 0.8
+  augmentation:
+    horizontal_flip: true
+    vertical_flip: false
+    random_rotation: 15
+    color_jitter: true
+    normalize_mean: [0.485, 0.456, 0.406]
+    normalize_std: [0.229, 0.224, 0.225]
+
+evaluation:
+  metrics: [auroc, f1, average_precision]
+  save_confusion_matrix: true
+  save_roc_curve: true
+
+logging:
+  log_dir: logs/defect_detection
+  checkpoint_dir: checkpoints/defect_detection
+  save_best_only: true
+  log_every_n_steps: 50

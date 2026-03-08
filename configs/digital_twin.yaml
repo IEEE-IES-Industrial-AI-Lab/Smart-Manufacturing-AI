@@ -1,0 +1,54 @@
+simulation:
+  num_stages: 4               # production stages in the line
+  simulation_steps: 1000
+  time_step_seconds: 1.0
+  random_seed: 42
+
+stages:
+  - name: machining
+    nominal_cycle_time: 30    # seconds
+    cycle_time_std: 2.0
+    failure_rate: 0.005       # failures per time step
+    mttr: 60                  # mean time to repair (seconds)
+
+  - name: assembly
+    nominal_cycle_time: 45
+    cycle_time_std: 3.0
+    failure_rate: 0.003
+    mttr: 90
+
+  - name: inspection
+    nominal_cycle_time: 15
+    cycle_time_std: 1.0
+    failure_rate: 0.001
+    mttr: 30
+
+  - name: packaging
+    nominal_cycle_time: 20
+    cycle_time_std: 1.5
+    failure_rate: 0.002
+    mttr: 45
+
+buffers:
+  inter_stage_capacity: 10    # WIP buffer between stages
+
+sensors:
+  sample_rate_hz: 10          # simulated sensor sampling frequency
+  noise_std: 0.01             # Gaussian noise on sensor readings
+  channels:
+    - temperature
+    - vibration
+    - pressure
+    - cycle_time
+
+sync:
+  enabled: false              # set true when connecting to real hardware
+  protocol: mqtt              # mqtt | opcua | modbus
+  broker_host: localhost
+  broker_port: 1883
+  topic_prefix: smai/twin
+
+logging:
+  log_dir: logs/digital_twin
+  export_csv: true
+  export_path: logs/digital_twin/sim_output.csv

@@ -1,0 +1,37 @@
+environment:
+  num_machines: 5
+  num_job_types: 4
+  max_queue_length: 20
+  processing_time_range: [1, 10]   # min/max time steps to process a job
+  breakdown_probability: 0.02      # per-step probability a machine breaks down
+  repair_time: 5                   # time steps to repair a broken machine
+  max_episode_steps: 500
+  reward_weights:
+    throughput: 1.0
+    tardiness_penalty: -0.5
+    downtime_penalty: -0.3
+
+agent:
+  algorithm: PPO
+  policy: MlpPolicy
+  learning_rate: 3.0e-4
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+
+training:
+  total_timesteps: 1_000_000
+  eval_freq: 10_000
+  n_eval_episodes: 10
+  save_freq: 50_000
+
+logging:
+  log_dir: logs/production_rl
+  model_dir: checkpoints/production_rl
+  tensorboard: true

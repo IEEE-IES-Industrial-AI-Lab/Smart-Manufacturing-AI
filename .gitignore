@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Datasets (large files — use download_datasets.sh)
+datasets/raw/
+datasets/processed/
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+checkpoints/
+runs/
+logs/
+
+# Results (keep CSVs in benchmarks/results/ but not large outputs)
+*.npy
+*.npz
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Documentation
+docs/_build/
+site/
+
+# Weights & Biases / MLflow
+wandb/
+mlruns/
